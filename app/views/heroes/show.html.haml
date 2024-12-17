@@ -1,14 +1,26 @@
-= image_tag @hero.image, alt: "#{@hero.name} image", class: "card-img-top"
+.card
+  .card-body
+    = image_tag @hero.image, alt: "#{@hero.name} image", class: "card-img-top-show"
+    .card-title
+      %h1= @hero.name
 
-%h1= @hero.name
+    %p.card-text
+      %strong Points de vie :
+      = @hero.health
 
-%p
-  %strong Points de vie :
-  = @hero.health
+    %p.card-text
+      %strong Points d'attaque :
+      = @hero.attack_power
 
-%p
-  %strong Points d'attaque :
-  = @hero.attack_power
+    %p.card-text
+      %strong Critical Chances :
+      = @hero.crit
 
-= link_to 'Retour à la liste', heroes_path, class: 'btn btn-secondary'
-= link_to 'Modifier', edit_hero_path(@hero), class: 'btn btn-warning'
+    %p.card-text
+      %strong Accuraty :
+      = @hero.accuraty
+
+    %p.card-text
+      = link_to 'Retour à la liste', heroes_path, class: 'btn btn-secondary'
+      = '|'
+      = link_to 'Modifier', edit_hero_path(@hero), class: 'btn btn-warning'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_12_17_111847) do
+ActiveRecord::Schema[7.0].define(version: 2024_12_17_150616) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -45,8 +45,32 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_17_111847) do
     t.integer "attack_power", default: 20, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "crit", default: 25, null: false
+    t.integer "accuraty", default: 80, null: false
+    t.integer "xp", default: 0, null: false
+  end
+
+  create_table "heroes_weapons", force: :cascade do |t|
+    t.integer "hero_id", null: false
+    t.integer "weapon_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hero_id"], name: "index_heroes_weapons_on_hero_id"
+    t.index ["weapon_id"], name: "index_heroes_weapons_on_weapon_id"
+  end
+
+  create_table "weapons", force: :cascade do |t|
+    t.string "name"
+    t.integer "health", default: 0, null: false
+    t.integer "attack_power", default: 0, null: false
+    t.integer "crit", default: 0, null: false
+    t.integer "accuraty", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "heroes_weapons", "heroes"
+  add_foreign_key "heroes_weapons", "weapons"
 end

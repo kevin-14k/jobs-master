@@ -19,3 +19,10 @@ Hero.create([
   { name: "Elara",     health: 120, attack_power: 16 }
 ])
 
+Weapon.create([
+    { name: "Long Sword", attack_power: 10 },
+    { name: "Ruby Crystal", health: 20 },
+    { name: "Zeal", crit: 10 },
+    { name: "Dagger", accuraty: 15 }
+  ]
+)

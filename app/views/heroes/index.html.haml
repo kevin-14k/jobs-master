@@ -11,18 +11,27 @@
             = image_tag hero.image, alt: "#{hero.name} image", class: "card-img-top"
           %center.card-body
             .card-title= hero.name
-            .card-text.mt-1
-              = image_tag asset_path('health.png'), alt: 'Hero health', size: '15x15'
-              = hero.health
             .card-text
-              = image_tag asset_path('attack.png'), alt: 'Hero attack', size: '15x15'
-              = hero.attack_power
+              .row
+                .col-md-3
+                  = image_tag asset_path('health.png'), alt: 'Hero health', size: '15x15'
+                  = hero.health
+                .col-md-3
+                  = image_tag asset_path('attack.png'), alt: 'Hero attack', size: '15x15'
+                  = hero.attack_power
+                .col-md-3
+                  = image_tag asset_path('crit.png'), alt: 'Hero crit chance', size: '15x15'
+                  = "#{hero.crit}%"
+                .col-md-3
+                  = image_tag asset_path('acc.png'), alt: 'Hero accuraty', size: '15x15'
+                  = "#{hero.accuraty}%"
               %div
                 = image_tag asset_path('p1.png'), alt: 'Choose hero 1', size: '30x30'
                 = radio_button_tag 'hero1_id', hero.id, false, id: "hero_#{hero.id}_1"
                 = radio_button_tag 'hero2_id', hero.id, false, id: "hero_#{hero.id}_2"
                 = image_tag asset_path('p2.png'), alt: 'Choose hero 2', size: '30x30'
               %div
+                %i.bi.bi-three-dots-vertical
                 = link_to 'Show', hero_path(hero)
                 = link_to 'Edit', edit_hero_path(hero)
                 = link_to 'Delete', hero_path(hero), method: :delete, data: { confirm: "Are you sure?" }

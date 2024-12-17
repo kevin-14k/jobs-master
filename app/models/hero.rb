@@ -6,9 +6,14 @@ class Hero < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :health, presence: true, numericality: { greater_than: 0 }
   validates :attack_power, presence: true, numericality: { greater_than: 0 }
+  validates :crit, presence: true, numericality: { greater_than: 0 }
+  validates :accuraty, presence: true, numericality: { greater_than: 0 }
 
   has_one_attached :image
   validate :acceptable_image
+
+  has_many :heroes_weapons
+  has_many :weapons, through: :heroes_weapons
 
   def acceptable_image
     return unless image.attached?

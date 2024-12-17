@@ -10,7 +10,10 @@ class BattleService
   end
 
   def call
-    simulate_battle hero1.health, hero2.health, 1
+    hero1_health = hero1.health + hero1.weapons.map(&:health).sum
+    hero2_health = hero2.health + hero2.weapons.map(&:health).sum
+    
+    simulate_battle hero1_health, hero2_health, 1
   end
 
   private
@@ -35,9 +38,13 @@ class BattleService
   end
 
   def calculate_damage(hero, step)
-    attack = hero.attack_power
+    accuraty = rand(100) < (hero.accuraty + hero.weapons.map(&:accuraty).sum) ? 1 : 0
+    log << "#{hero.name} missed." and return 0 if accuraty == 0
 
-    log << "#{hero.name} attack for #{attack} damage."
+    crit     = rand(100) < (hero.crit + hero.weapons.map(&:crit).sum) ? 2 : 1
+    attack = (hero.attack_power + hero.weapons.map(&:attack_power).sum) * crit
+
+    log << "#{hero.name} #{crit == 2 ? 'critically ' : ''}strike for #{attack} damage."
 
     attack
   end

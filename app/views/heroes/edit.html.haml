@@ -25,6 +25,14 @@
     = form.number_field :attack_power, class: "form-control", value: @hero.attack_power
 
   .form-group
+    = form.label :crit, "Critical Chances"
+    = form.number_field :crit, class: "form-control", value: @hero.crit
+
+  .form-group
+    = form.label :accuraty, "Accuraty"
+    = form.number_field :accuraty, class: "form-control", value: @hero.accuraty
+
+  .form-group
     = form.submit "Update", class: "btn btn-success"
 
 = link_to 'Back to list', heroes_path, class: 'btn btn-secondary'
