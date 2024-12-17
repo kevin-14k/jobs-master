@@ -1,0 +1,8 @@
+%h1= 'Battle Result'
+%h2= "#{@results[:winner].name} is the winner!"
+%p= "#{@results[:loser].name} has been defeated."
+
+- @results[:log].each do |l|
+    %p= l
+
+= link_to 'Back to Heroes', heroes_path, class: 'btn btn-secondary'

@@ -37,10 +37,39 @@ class HeroesController < ApplicationController
     redirect_to heroes_path, notice: 'Hero deleted'
   end
 
+  def battle
+    validation_result = validate_heroes_selection
+
+    if validation_result[:error]
+      flash[:error] = validation_result[:error]
+      redirect_to heroes_path and return
+    end
+
+    @results = ::BattleService.new(@hero1, @hero2).call
+
+    render :battle_result
+  end
+
   private
+
+  def validate_heroes_selection
+    if params[:hero1_id].blank? || params[:hero2_id].blank?
+      return { error: 'You must select one hero for each player.' }
+    end
+
+    @hero1 = Hero.find_by(id: params[:hero1_id])
+    @hero2 = Hero.find_by(id: params[:hero2_id])
+
+    return { error: 'Invalid hero selection. Please try again.' } if @hero1.nil? || @hero2.nil?
+
+    { error: nil }
+  end
 
   def set_hero
     @hero = Hero.find(params[:id])
+
+  rescue ActiveRecord::RecordNotFound
+    redirect_to heroes_path
   end
 
   def hero_params
