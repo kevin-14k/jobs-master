@@ -43,6 +43,11 @@
     color: #666;
 }
 
+.card-sub-text {
+    font-size: .8em;
+    color: #667;
+}
+
 .card-create {
     background-color: #352e46;
     color: white;

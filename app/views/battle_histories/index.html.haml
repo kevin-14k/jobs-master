@@ -1,0 +1,15 @@
+.card.half.m-a
+  .card-body
+    .card-title
+      %h1= 'Battle History'
+
+      - @battle_histories.each do |battle_history|
+        %div
+          = image_tag battle_history.hero1.image, alt: "#{battle_history.hero1.name} image", size: '50x50'
+          = "VS"
+          = image_tag battle_history.hero2.image, alt: "#{battle_history.hero2.name} image", size: '50x50'
+
+          = "Winner: "
+          = image_tag battle_history.winner.image, alt: "#{battle_history.winner.name} image", size: '50x50'
+
+          = "#{time_ago_in_words(battle_history.date)} ago"

@@ -1,24 +1,52 @@
-.card
+.card.third.m-a
   .card-body
     = image_tag @hero.image, alt: "#{@hero.name} image", class: "card-img-top-show"
     .card-title
       %h1= @hero.name
 
     %p.card-text
+      = image_tag asset_path('health.png'), size: '15x15'
       %strong Points de vie :
       = @hero.health
 
     %p.card-text
+      = image_tag asset_path('attack.png'), size: '15x15'
       %strong Points d'attaque :
       = @hero.attack_power
 
     %p.card-text
+      = image_tag asset_path('crit.png'), size: '15x15'
       %strong Critical Chances :
       = @hero.crit
 
     %p.card-text
+      = image_tag asset_path('acc.png'), size: '15x15'
       %strong Accuraty :
       = @hero.accuraty
+
+
+    .card-title
+      %h2= 'Items'
+
+    - @hero.weapons.each do |weapon|
+      %strong.card-text= weapon.name
+      .card-sub-text
+        = image_tag asset_path('health.png'), size: '10x10'
+        = weapon.health
+        
+        = image_tag asset_path('attack.png'), size: '10x10'
+        = weapon.attack_power
+
+        = image_tag asset_path('crit.png'), size: '10x10'
+        = weapon.crit
+
+        = image_tag asset_path('acc.png'), size: '10x10'
+        = weapon.accuraty
+
+    %h3 Add Weapon:
+    = form_with url: add_weapon_hero_path(@hero), method: :post, local: true do |form|
+      = form.collection_select :weapon_id, Weapon.all, :id, :name, prompt: 'Select an weapon'
+      = form.submit '+', class: 'btn btn-select-submit'
 
     %p.card-text
       = link_to 'Retour à la liste', heroes_path, class: 'btn btn-secondary'

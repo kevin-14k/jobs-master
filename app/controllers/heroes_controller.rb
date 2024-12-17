@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HeroesController < ApplicationController
   before_action :set_hero, only: %i[show edit update destroy]
 
@@ -46,8 +48,18 @@ class HeroesController < ApplicationController
     end
 
     @results = ::BattleService.new(@hero1, @hero2).call
+    ::CreateHistoryService.new(@hero1, @hero2, @results[:winner]).call
 
     render :battle_result
+  end
+
+  def add_weapon
+    @hero = Hero.find(params[:id])
+    @weapon = Weapon.find(params[:weapon_id])
+
+    @hero.weapons << @weapon unless @hero.weapons.include?(@weapon)
+
+    redirect_to @hero, notice: 'Weapon added successfully!'
   end
 
   private

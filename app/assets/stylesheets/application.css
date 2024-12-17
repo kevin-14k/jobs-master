@@ -23,6 +23,24 @@
   text-decoration: none;
  }
 
+ input[type='radio'] {
+  box-sizing: border-box;
+  appearance: none;
+  background: white;
+  outline: 2px solid #333;
+  border: 3px solid white;
+  width: 16px;
+  height: 16px;
+}
+
+input[type='radio']:checked {
+  background: #333;
+}
+
+.m-a {
+  margin: auto;
+}
+
 .mt-1 {
     margin-top: 1rem;
 }
@@ -33,6 +51,14 @@
 
 .mt-3 {
     margin-top: 3rem;
+}
+
+.half {
+  width: 50%
+}
+
+.third {
+  width: 30%
 }
 
 .hero-image {
