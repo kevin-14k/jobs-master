@@ -1,0 +1,25 @@
+%h1 Liste des Héros
+
+
+%div.container
+  %h1 Hero Index
+  %div.hero-grid
+    - @heroes.each do |hero|
+      .card
+        - if hero.image.attached?
+          = image_tag hero.image, alt: "#{hero.name} image", class: "card-img-top"
+        .card-body
+          .card-title= hero.name
+          %p.card-text
+            %strong Health:
+            = hero.health
+          %p.card-text
+            %strong Attack:
+            = hero.attack_power
+            %div
+              = link_to 'Voir', hero_path(hero)
+              = link_to 'Modifier', edit_hero_path(hero)
+              = link_to 'Supprimer', hero_path(hero), method: :delete, data: { confirm: "Are you sure?" }
+    .card
+      .card-body
+        = link_to 'Create', new_hero_path, class: 'btn btn-primary'

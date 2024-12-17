@@ -1,2 +1,4 @@
-%h1
-  Hello World!
+%center
+    = image_tag asset_path('hero.png'), alt: 'Hero Image', class: 'hero-image'
+    %div
+        = link_to 'ENTER', heroes_path, class: 'btn-primary'

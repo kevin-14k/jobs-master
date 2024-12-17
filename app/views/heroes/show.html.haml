@@ -1,0 +1,14 @@
+= image_tag @hero.image, alt: "#{@hero.name} image", class: "card-img-top"
+
+%h1= @hero.name
+
+%p
+  %strong Points de vie :
+  = @hero.health
+
+%p
+  %strong Points d'attaque :
+  = @hero.attack_power
+
+= link_to 'Retour à la liste', heroes_path, class: 'btn btn-secondary'
+= link_to 'Modifier', edit_hero_path(@hero), class: 'btn btn-warning'
