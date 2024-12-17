@@ -58,3 +58,11 @@
 .card-create:hover {
     background-color: #74688f;
 }
+
+.card-inverted {
+    color: black;
+}
+
+.form-group {
+    margin-top: 2rem;
+}

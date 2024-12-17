@@ -62,12 +62,30 @@ class HeroesController < ApplicationController
     redirect_to @hero, notice: 'Weapon added successfully!'
   end
 
+  def remove_weapon
+    @hero = Hero.find(params[:id])
+    @weapon = Weapon.find(params[:weapon_id])
+
+    hero_weapon = HeroesWeapon.find_by(hero: @hero, weapon: @weapon)
+
+    if hero_weapon
+      hero_weapon.destroy
+      flash[:notice] = 'Weapon removed successfully.'
+    else
+      flash[:alert] = "Weapon not found in the hero's inventory."
+    end
+
+    redirect_to hero_path(@hero)
+  end
+
   private
 
   def validate_heroes_selection
     if params[:hero1_id].blank? || params[:hero2_id].blank?
       return { error: 'You must select one hero for each player.' }
     end
+
+    return { error: 'You must select two different hero for each player.' } if params[:hero1_id] == params[:hero2_id]
 
     @hero1 = Hero.find_by(id: params[:hero1_id])
     @hero2 = Hero.find_by(id: params[:hero2_id])

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_12_17_162146) do
+ActiveRecord::Schema[7.0].define(version: 2024_12_17_170756) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -60,6 +60,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_17_162146) do
     t.integer "crit", default: 25, null: false
     t.integer "accuraty", default: 80, null: false
     t.integer "xp", default: 0, null: false
+    t.integer "battles", default: 0, null: false
+    t.integer "wins", default: 0, null: false
   end
 
   create_table "heroes_weapons", force: :cascade do |t|

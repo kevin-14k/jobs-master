@@ -1,38 +1,40 @@
-%h1 Create a New Hero
+.card.third.card-inverted.m-a
+  .card-title Create a New Hero
 
-= form_with(model: @hero, url: heroes_path(@hero), method: :post, local: true) do |form|
-  - if @hero.errors.any?
-    .alert.alert-danger
-      %h2= "#{pluralize(@hero.errors.count, 'error')} :"
-      %ul
-        - @hero.errors.full_messages.each do |msg|
-          %li= msg
+  = form_with(model: @hero, url: heroes_path(@hero), method: :post, local: true) do |form|
+    - if @hero.errors.any?
+      .alert.alert-danger
+        %h2= "#{pluralize(@hero.errors.count, 'error')} :"
+        %ul
+          - @hero.errors.full_messages.each do |msg|
+            %li= msg
 
-  .form-group
-    = form.label :image, "Upload Image"
-    = form.file_field :image, class: "form-control"
+    .form-group
+      = form.label :image, "Upload Image"
+      = form.file_field :image, class: "form-control"
 
-  .form-group
-    = form.label :name, "Name"
-    = form.text_field :name, class: "form-control", placeholder: "Enter hero name"
+    .form-group
+      = form.label :name, "Name"
+      = form.text_field :name, class: "form-control", placeholder: "Enter hero name"
 
-  .form-group
-    = form.label :health, "Health Points"
-    = form.number_field :health, class: "form-control", placeholder: "Enter hero health"
+    .form-group
+      = form.label :health, "Health Points"
+      = form.number_field :health, class: "form-control", placeholder: "Enter hero health"
 
-  .form-group
-    = form.label :attack_power, "Attack Points"
-    = form.number_field :attack_power, class: "form-control", placeholder: "Enter hero attack power"
+    .form-group
+      = form.label :attack_power, "Attack Points"
+      = form.number_field :attack_power, class: "form-control", placeholder: "Enter hero attack power"
 
-  .form-group
-    = form.label :crit, "Critical Chances"
-    = form.number_field :crit, class: "form-control", value: @hero.crit
+    .form-group
+      = form.label :crit, "Critical Chances"
+      = form.number_field :crit, class: "form-control", value: @hero.crit
 
-  .form-group
-    = form.label :accuraty, "Accuraty"
-    = form.number_field :accuraty, class: "form-control", value: @hero.accuraty
+    .form-group
+      = form.label :accuraty, "Accuraty"
+      = form.number_field :accuraty, class: "form-control", value: @hero.accuraty
 
-  .form-group
-    = form.submit "Create Hero", class: "btn btn-success"
+    .form-group
+      = form.submit "Create Hero", class: "btn btn-success"
 
-= link_to 'Back to list', heroes_path, class: 'btn btn-secondary'
+  %center
+    = link_to 'Back to list', heroes_path, class: 'btn btn-secondary'

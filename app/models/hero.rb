@@ -23,4 +23,14 @@ class Hero < ApplicationRecord
     acceptable_types = ['image/jpeg', 'image/png']
     errors.add(:image, 'must be a JPEG or PNG') unless acceptable_types.include?(image.content_type)
   end
+
+  def level
+    (xp / 2) + 1
+  end
+
+  def winrate
+    return '-' if wins.zero?
+
+    ((wins.to_f / battles.to_f) * 100).to_i
+  end
 end

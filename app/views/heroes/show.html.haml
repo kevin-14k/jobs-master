@@ -1,6 +1,7 @@
 .card.third.m-a
   .card-body
-    = image_tag @hero.image, alt: "#{@hero.name} image", class: "card-img-top-show"
+    - if @hero.image.attached?
+      = image_tag @hero.image, alt: "#{@hero.name} image", class: "card-img-top-show"
     .card-title
       %h1= @hero.name
 
@@ -17,16 +18,19 @@
     %p.card-text
       = image_tag asset_path('crit.png'), size: '15x15'
       %strong Critical Chances :
-      = @hero.crit
+      = "#{@hero.crit}%"
 
     %p.card-text
       = image_tag asset_path('acc.png'), size: '15x15'
       %strong Accuraty :
-      = @hero.accuraty
+      = "#{@hero.accuraty}%"
 
 
     .card-title
       %h2= 'Items'
+      = form_with url: add_weapon_hero_path(@hero), method: :post, local: true do |form|
+        = form.collection_select :weapon_id, Weapon.all, :id, :name, prompt: 'Add an weapon'
+        = form.submit '+', class: 'btn btn-select-submit'
 
     - @hero.weapons.each do |weapon|
       %strong.card-text= weapon.name
@@ -42,13 +46,12 @@
 
         = image_tag asset_path('acc.png'), size: '10x10'
         = weapon.accuraty
+      .card-sub-text
+        = link_to 'Remove', remove_weapon_hero_path(@hero, weapon_id: weapon.id), method: :delete, data: { confirm: 'Are you sure you want to remove this weapon?' }
 
-    %h3 Add Weapon:
-    = form_with url: add_weapon_hero_path(@hero), method: :post, local: true do |form|
-      = form.collection_select :weapon_id, Weapon.all, :id, :name, prompt: 'Select an weapon'
-      = form.submit '+', class: 'btn btn-select-submit'
-
-    %p.card-text
-      = link_to 'Retour à la liste', heroes_path, class: 'btn btn-secondary'
+    %center.card-text.mt-3
+      = link_to 'Back', heroes_path, class: 'btn-secondary'
       = '|'
-      = link_to 'Modifier', edit_hero_path(@hero), class: 'btn btn-warning'
+      = link_to 'Edit', edit_hero_path(@hero), class: 'btn-secondary'
+      = '|'
+      = link_to 'Delete', hero_path(@hero), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn-secondary'

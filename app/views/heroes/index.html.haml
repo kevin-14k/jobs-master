@@ -8,20 +8,20 @@
       - @heroes.each do |hero|
         .card
           - if hero.image.attached?
-            = image_tag hero.image, alt: "#{hero.name} image", class: "card-img-top"
+            = link_to hero_path(hero) do
+              = image_tag hero.image, alt: "#{hero.name} image", class: "card-img-top"
           %center.card-body
-            .card-title= hero.name
+            = link_to hero_path(hero) do
+              .card-title= hero.name
+            .card-text= "Lvl. #{hero.level}"
+            .card-text= "Wr. #{hero.winrate}%"
             .card-text
               %div.mt-2
                 = image_tag asset_path('p1.png'), alt: 'Choose hero 1', size: '30x30'
                 = radio_button_tag 'hero1_id', hero.id, false, id: "hero_#{hero.id}_1"
                 = radio_button_tag 'hero2_id', hero.id, false, id: "hero_#{hero.id}_2"
                 = image_tag asset_path('p2.png'), alt: 'Choose hero 2', size: '30x30'
-              %div
-                %i.bi.bi-three-dots-vertical
-                = link_to 'Show', hero_path(hero)
-                = link_to 'Edit', edit_hero_path(hero)
-                = link_to 'Delete', hero_path(hero), method: :delete, data: { confirm: "Are you sure?" }
+                
       = link_to new_hero_path, class: 'card card-create' do
         = '+'
 

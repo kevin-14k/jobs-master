@@ -19,6 +19,15 @@ Hero.create([
   { name: "Elara",     health: 120, attack_power: 16 }
 ])
 
+Hero.find_by(name: 'Zaphod').image.attach(io: File.open(Rails.root.join('public', 'images', 'heroes', 'zaphod.png')), filename: 'zaphod.png')
+Hero.find_by(name: 'Alfred').image.attach(io: File.open(Rails.root.join('public', 'images', 'heroes', 'alfred.png')), filename: 'alfred.png')
+Hero.find_by(name: 'Daria').image.attach(io: File.open(Rails.root.join('public', 'images', 'heroes', 'daria.png')), filename: 'daria.png')
+Hero.find_by(name: 'Miyamoto').image.attach(io: File.open(Rails.root.join('public', 'images', 'heroes', 'miyamoto.png')), filename: 'miyamoto.png')
+Hero.find_by(name: 'Rorschach').image.attach(io: File.open(Rails.root.join('public', 'images', 'heroes', 'rorschach.png')), filename: 'rorschach.png')
+Hero.find_by(name: 'Morpheus').image.attach(io: File.open(Rails.root.join('public', 'images', 'heroes', 'morpheus.png')), filename: 'morpheus.png')
+Hero.find_by(name: 'Juno').image.attach(io: File.open(Rails.root.join('public', 'images', 'heroes', 'juno.png')), filename: 'juno.png')
+Hero.find_by(name: 'Elara').image.attach(io: File.open(Rails.root.join('public', 'images', 'heroes', 'elara.png')), filename: 'elara.png')
+
 Weapon.create([
     { name: "Long Sword", attack_power: 10 },
     { name: "Ruby Crystal", health: 20 },

@@ -9,14 +9,3 @@
                 %p= l
 
             = link_to 'Back to Heroes', heroes_path, class: 'btn btn-secondary'
-.card.half.m-a 
-    .card-body
-        .card-title= 'Battle Result'
-        .card-title= "#{@results[:winner].name} is the winner!"
-        .card-title= "#{@results[:loser].name} has been defeated."
-
-        .card-text
-            - @results[:log].each do |l|
-                %p= l
-
-            = link_to 'Back to Heroes', heroes_path, class: 'btn btn-secondary'

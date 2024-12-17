@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :heroes do
     member do
       post 'add_weapon'
+      delete 'remove_weapon/:weapon_id', to: 'heroes#remove_weapon', as: 'remove_weapon'
     end
   end
 

@@ -42,7 +42,7 @@ class BattleService
     log << "#{hero.name} missed." and return 0 if accuraty == 0
 
     crit     = rand(100) < (hero.crit + hero.weapons.map(&:crit).sum) ? 2 : 1
-    attack = (hero.attack_power + hero.weapons.map(&:attack_power).sum) * crit
+    attack = (hero.attack_power + hero.weapons.map(&:attack_power).sum + hero.level) * crit
 
     log << "#{hero.name} #{crit == 2 ? 'critically ' : ''}strike for #{attack} damage."
 
